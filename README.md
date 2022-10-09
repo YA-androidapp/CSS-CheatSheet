@@ -130,90 +130,90 @@
 
 </details><br><br>
 
-| セレクタ |            |                        | 表記                     | 例                                                     | 備考                                                                                     |
-| -------- | ---------- | ---------------------- | ------------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| 擬似表記 |            |                        |                          |                                                        |                                                                                          |
-|          | 擬似クラス |                        |                          |                                                        |                                                                                          |
-|          |            | 言語擬似クラス         |                          |                                                        |                                                                                          |
-|          |            |                        | `:dir`                   | `:dir(ltr) { color: red; }`                            | 文書の言語によって決定される書字方向に基づいて要素を選択                                 |
-|          |            |                        | `:lang` ※3               | `:lang(ja) { color: red; }`                            | 内容物の言語に基づいて要素を選択                                                         |
-|          |            |                        |                          |                                                        |                                                                                          |
-|          |            | 位置擬似クラス         |                          |                                                        |                                                                                          |
-|          |            |                        | `:any-link`              | `a:any-link { color: red; }`                           | 要素が `:link` または `:visited` のいずれかに一致する要素を選択                          |
-|          |            |                        | `:link`                  | `a:link { color: red; }` ※4                            | まだ訪問していないリンク要素を選択                                                       |
-|          |            |                        | `:visited`               | `a:visited { color: red; }` ※4                         | 訪問したことのあるリンク要素を選択                                                       |
-|          |            |                        | `:local-link`            | ※5                                                     | 同じページへのリンク要素を選択（絶対 URL が対象 URL と同じリンク）                       |
-|          |            |                        | `:target`                | ※6                                                     | URL のフラグメント（#id）に一致する id を持つ要素                                        |
-|          |            |                        | `:target-within`         | ※5                                                     | URL のフラグメント（#id）に一致する id を持つ要素を子孫要素に持つ要素                    |
-|          |            |                        | `:scope`                 | ※7                                                     | DOM API（ `querySelector(), querySelectorAll()` など）で、メソッドを呼び出した要素を選択 |
-|          |            |                        |                          |                                                        |                                                                                          |
-|          |            | ユーザー操作擬似クラス |                          |                                                        |                                                                                          |
-|          |            |                        | `:hover`                 | ※4                                                     | カーソルを要素の上でかざしたとき                                                         |
-|          |            |                        | `:active`                | ※4                                                     | アイテムがクリックされたとき                                                             |
-|          |            |                        | `:focus`                 | ※8                                                     | フォーカスを持ったとき                                                                   |
-|          |            |                        | `:focus-visible`         | ※8                                                     | キーボード操作でフォーカスを持ったとき                                                   |
-|          |            |                        | `:focus-within`          | ※8                                                     | `:focus` の要素と `:focus` が適用される子孫要素を持つ要素                                |
-|          |            |                        |                          |                                                        |                                                                                          |
-|          |            | 時間軸擬似クラス       |                          |                                                        |                                                                                          |
-|          |            |                        | `:current`               |                                                        | 表示されている要素またはその祖先                                                         |
-|          |            |                        | `:past`                  |                                                        | `:current` 要素の前に発生する要素                                                        |
-|          |            |                        | `:future`                |                                                        | `:current` 要素の後に発生する要素                                                        |
-|          |            |                        |                          |                                                        |                                                                                          |
-|          |            | リソース状態擬似クラス |                          |                                                        |                                                                                          |
-|          |            |                        | `:playing`               | `video:playing { border: 5px dashed green; }`          | 動画などが再生中のとき                                                                   |
-|          |            |                        | `:paused`                | `video:paused { border: 5px dashed red; }`             | 動画などが一時停止中のとき                                                               |
-|          |            |                        |                          |                                                        |                                                                                          |
-|          |            | 入力擬似クラス         |                          |                                                        |                                                                                          |
-|          |            |                        | `:autofill`              | `input:autofill { border: 5px dashed red; }`           | input要素の値がブラウザーによって自動補完されたとき                                      |
-|          |            |                        | `:enabled`               | `input:enabled { border: 5px dashed red; }`            | 要素が有効なとき                                                                         |
-|          |            |                        | `:disabled`              | `input:disabled { border: 5px dashed red; }`           | 要素が無効なとき                                                                         |
-|          |            |                        | `:read-only`             | `input:read-only { border: 5px dashed red; }`          | ユーザーが変更できない要素                                                               |
-|          |            |                        | `:read-write`            | `input:read-write { border: 5px dashed red; }`         | ユーザーが編集できる要素                                                                 |
-|          |            |                        | `:placeholder-shown`     | `input:placeholder-shown { border: 5px dashed red; }`  | placeholder属性のものが表示されている入力要素                                            |
-|          |            |                        | `:default`               | ※9                                                     | 既定の要素                                                                               |
-|          |            |                        | `:checked`               | `input:checked { box-shadow: 0 0 2px 1px red; }`       | チェックボックスやラジオボタンなどのオンになっている要素                                 |
-|          |            |                        | `:indeterminate`         | `input:indeterminate { background-color: red; }`       | ※10                                                                                      |
-|          |            |                        | `:blank`                 | `input[type=text]:blank { background-color: red; }`    | 空文字列が入っている要素                                                                 |
-|          |            |                        | `:valid`                 | `input[type=email]:valid { background-color: green; }` | 内容が妥当である要素                                                                     |
-|          |            |                        | `:invalid`               | `input[type=email]:invalid { background-color: red; }` | 無効な内容を持つ要素                                                                     |
-|          |            |                        | `:in-range`              | ※11                                                    | 選択した値が許容範囲内にある場合                                                         |
-|          |            |                        | `:out-of-range`          | ※11                                                    | 選択した値が許容範囲内にない場合                                                         |
-|          |            |                        | `:required`              | `input[type=text]:required { background-color: red; }` | フォーム要素が必須項目                                                                   |
-|          |            |                        | `:optional`              | `input[type=text]:optional { background-color: red; }` | フォーム要素が省略可能                                                                   |
-|          |            |                        | `:user-invalid`          | ※12                                                    | 不正確な値が入力されている要素                                                           |
-|          |            |                        |                          |                                                        |                                                                                          |
-|          |            | ツリー構造擬似クラス   |                          |                                                        |                                                                                          |
-|          |            |                        | `:root`                  | `:root { border: 5px dashed red; }`                    | 文書のルートである要素                                                                   |
-|          |            |                        | `:empty`                 | `div:empty { background-color: red; }`                 | 空白文字以外に子要素・文字列がない要素                                                   |
-|          |            |                        | `:nth-child`             | ※13                                                    | 兄弟要素のリストから要素を選択                                                           |
-|          |            |                        | `:nth-last-child`        |                                                        | 兄弟要素のリストの末尾から逆方向に要素を選択                                             |
-|          |            |                        | `:first-child`           | ※13                                                    | 兄弟のうちの最初の要素                                                                   |
-|          |            |                        | `:last-child`            | ※13                                                    | 兄弟のうちの最後の要素                                                                   |
-|          |            |                        | `:only-child`            | ※13                                                    | 兄弟要素がない要素                                                                       |
-|          |            |                        | `:nth-of-type`           | ※14                                                    | 兄弟要素のリストの特定の型に一致する要素                                                 |
-|          |            |                        | `:nth-last-of-type`      |                                                        | 兄弟要素のリストの末尾から逆方向に特定の型に一致する要素                                 |
-|          |            |                        | `:first-of-type`         | ※14                                                    | 兄弟のうちの最初の特定の型に一致する要素                                                 |
-|          |            |                        | `:last-of-type`          | ※14                                                    | 兄弟のうちの最後の特定の型に一致する要素                                                 |
-|          |            |                        | `:only-of-type`          | ※14                                                    | 指定された型セレクターで兄弟要素がない要素                                               |
-|          |            |                        |                          |                                                        |                                                                                          |
-|          | 擬似要素   |                        |                          |                                                        | 擬似要素は 1 つのセレクターに 1 つだけ使用可能                                           |
-|          |            |                        | `::after`                |                                                        |                                                                                          |
-|          |            |                        | `::backdrop`             |                                                        |                                                                                          |
-|          |            |                        | `::before`               |                                                        |                                                                                          |
-|          |            |                        | `::cue`                  |                                                        |                                                                                          |
-|          |            |                        | `::cue-region`           |                                                        |                                                                                          |
-|          |            |                        | `::first-letter`         |                                                        |                                                                                          |
-|          |            |                        | `::first-line`           |                                                        |                                                                                          |
-|          |            |                        | `::file-selector-button` |                                                        |                                                                                          |
-|          |            |                        | `::grammar-error`        |                                                        |                                                                                          |
-|          |            |                        | `::marker`               |                                                        |                                                                                          |
-|          |            |                        | `::part()`               |                                                        |                                                                                          |
-|          |            |                        | `::placeholder`          |                                                        |                                                                                          |
-|          |            |                        | `::selection`            |                                                        |                                                                                          |
-|          |            |                        | `::slotted()`            |                                                        |                                                                                          |
-|          |            |                        | `::spelling-error`       |                                                        |                                                                                          |
-|          |            |                        | `::target-text`          |                                                        |                                                                                          |
-|          |            |                        |                          |                                                        |                                                                                          |
+| セレクタ |            |                        | 表記                     | 例                                                                    | 備考                                                                                     |
+| -------- | ---------- | ---------------------- | ------------------------ | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 擬似表記 |            |                        |                          |                                                                       |                                                                                          |
+|          | 擬似クラス |                        |                          |                                                                       |                                                                                          |
+|          |            | 言語擬似クラス         |                          |                                                                       |                                                                                          |
+|          |            |                        | `:dir`                   | `:dir(ltr) { color: red; }`                                           | 文書の言語によって決定される書字方向に基づいて要素を選択                                 |
+|          |            |                        | `:lang` ※3               | `:lang(ja) { color: red; }`                                           | 内容物の言語に基づいて要素を選択                                                         |
+|          |            |                        |                          |                                                                       |                                                                                          |
+|          |            | 位置擬似クラス         |                          |                                                                       |                                                                                          |
+|          |            |                        | `:any-link`              | `a:any-link { color: red; }`                                          | 要素が `:link` または `:visited` のいずれかに一致する要素を選択                          |
+|          |            |                        | `:link`                  | `a:link { color: red; }` ※4                                           | まだ訪問していないリンク要素を選択                                                       |
+|          |            |                        | `:visited`               | `a:visited { color: red; }` ※4                                        | 訪問したことのあるリンク要素を選択                                                       |
+|          |            |                        | `:local-link`            | ※5                                                                    | 同じページへのリンク要素を選択（絶対 URL が対象 URL と同じリンク）                       |
+|          |            |                        | `:target`                | ※6                                                                    | URL のフラグメント（#id）に一致する id を持つ要素                                        |
+|          |            |                        | `:target-within`         | ※5                                                                    | URL のフラグメント（#id）に一致する id を持つ要素を子孫要素に持つ要素                    |
+|          |            |                        | `:scope`                 | ※7                                                                    | DOM API（ `querySelector(), querySelectorAll()` など）で、メソッドを呼び出した要素を選択 |
+|          |            |                        |                          |                                                                       |                                                                                          |
+|          |            | ユーザー操作擬似クラス |                          |                                                                       |                                                                                          |
+|          |            |                        | `:hover`                 | ※4                                                                    | カーソルを要素の上でかざしたとき                                                         |
+|          |            |                        | `:active`                | ※4                                                                    | アイテムがクリックされたとき                                                             |
+|          |            |                        | `:focus`                 | ※8                                                                    | フォーカスを持ったとき                                                                   |
+|          |            |                        | `:focus-visible`         | ※8                                                                    | キーボード操作でフォーカスを持ったとき                                                   |
+|          |            |                        | `:focus-within`          | ※8                                                                    | `:focus` の要素と `:focus` が適用される子孫要素を持つ要素                                |
+|          |            |                        |                          |                                                                       |                                                                                          |
+|          |            | 時間軸擬似クラス       |                          |                                                                       |                                                                                          |
+|          |            |                        | `:current`               |                                                                       | 表示されている要素またはその祖先                                                         |
+|          |            |                        | `:past`                  |                                                                       | `:current` 要素の前に発生する要素                                                        |
+|          |            |                        | `:future`                |                                                                       | `:current` 要素の後に発生する要素                                                        |
+|          |            |                        |                          |                                                                       |                                                                                          |
+|          |            | リソース状態擬似クラス |                          |                                                                       |                                                                                          |
+|          |            |                        | `:playing`               | `video:playing { border: 5px dashed green; }`                         | 動画などが再生中のとき                                                                   |
+|          |            |                        | `:paused`                | `video:paused { border: 5px dashed red; }`                            | 動画などが一時停止中のとき                                                               |
+|          |            |                        |                          |                                                                       |                                                                                          |
+|          |            | 入力擬似クラス         |                          |                                                                       |                                                                                          |
+|          |            |                        | `:autofill`              | `input:autofill { border: 5px dashed red; }`                          | input要素の値がブラウザーによって自動補完されたとき                                      |
+|          |            |                        | `:enabled`               | `input:enabled { border: 5px dashed red; }`                           | 要素が有効なとき                                                                         |
+|          |            |                        | `:disabled`              | `input:disabled { border: 5px dashed red; }`                          | 要素が無効なとき                                                                         |
+|          |            |                        | `:read-only`             | `input:read-only { border: 5px dashed red; }`                         | ユーザーが変更できない要素                                                               |
+|          |            |                        | `:read-write`            | `input:read-write { border: 5px dashed red; }`                        | ユーザーが編集できる要素                                                                 |
+|          |            |                        | `:placeholder-shown`     | `input:placeholder-shown { border: 5px dashed red; }`                 | placeholder属性のものが表示されている入力要素                                            |
+|          |            |                        | `:default`               | ※9                                                                    | 既定の要素                                                                               |
+|          |            |                        | `:checked`               | `input:checked { box-shadow: 0 0 2px 1px red; }`                      | チェックボックスやラジオボタンなどのオンになっている要素                                 |
+|          |            |                        | `:indeterminate`         | `input:indeterminate { background-color: red; }`                      | ※10                                                                                      |
+|          |            |                        | `:blank`                 | `input[type=text]:blank { background-color: red; }`                   | 空文字列が入っている要素                                                                 |
+|          |            |                        | `:valid`                 | `input[type=email]:valid { background-color: green; }`                | 内容が妥当である要素                                                                     |
+|          |            |                        | `:invalid`               | `input[type=email]:invalid { background-color: red; }`                | 無効な内容を持つ要素                                                                     |
+|          |            |                        | `:in-range`              | ※11                                                                   | 選択した値が許容範囲内にある場合                                                         |
+|          |            |                        | `:out-of-range`          | ※11                                                                   | 選択した値が許容範囲内にない場合                                                         |
+|          |            |                        | `:required`              | `input[type=text]:required { background-color: red; }`                | フォーム要素が必須項目                                                                   |
+|          |            |                        | `:optional`              | `input[type=text]:optional { background-color: red; }`                | フォーム要素が省略可能                                                                   |
+|          |            |                        | `:user-invalid`          | ※12                                                                   | 不正確な値が入力されている要素                                                           |
+|          |            |                        |                          |                                                                       |                                                                                          |
+|          |            | ツリー構造擬似クラス   |                          |                                                                       |                                                                                          |
+|          |            |                        | `:root`                  | `:root { border: 5px dashed red; }`                                   | 文書のルートである要素                                                                   |
+|          |            |                        | `:empty`                 | `div:empty { background-color: red; }`                                | 空白文字以外に子要素・文字列がない要素                                                   |
+|          |            |                        | `:nth-child`             | ※13                                                                   | 兄弟要素のリストから要素を選択                                                           |
+|          |            |                        | `:nth-last-child`        |                                                                       | 兄弟要素のリストの末尾から逆方向に要素を選択                                             |
+|          |            |                        | `:first-child`           | ※13                                                                   | 兄弟のうちの最初の要素                                                                   |
+|          |            |                        | `:last-child`            | ※13                                                                   | 兄弟のうちの最後の要素                                                                   |
+|          |            |                        | `:only-child`            | ※13                                                                   | 兄弟要素がない要素                                                                       |
+|          |            |                        | `:nth-of-type`           | ※14                                                                   | 兄弟要素のリストの特定の型に一致する要素                                                 |
+|          |            |                        | `:nth-last-of-type`      |                                                                       | 兄弟要素のリストの末尾から逆方向に特定の型に一致する要素                                 |
+|          |            |                        | `:first-of-type`         | ※14                                                                   | 兄弟のうちの最初の特定の型に一致する要素                                                 |
+|          |            |                        | `:last-of-type`          | ※14                                                                   | 兄弟のうちの最後の特定の型に一致する要素                                                 |
+|          |            |                        | `:only-of-type`          | ※14                                                                   | 指定された型セレクターで兄弟要素がない要素                                               |
+|          |            |                        |                          |                                                                       |                                                                                          |
+|          | 擬似要素   |                        |                          |                                                                       | 擬似要素は 1 つのセレクターに 1 つだけ使用可能                                           |
+|          |            |                        | `::after`                | `p.new-item::after { content: "New!!"; color: red; }`                 | `<img>` や `<br>` のような置換要素には利用不可                                           |
+|          |            |                        | `::backdrop`             | `dialog::backdrop { background-color: darkblue; }`                    | 全画面モードで表示される直下に直接表示される viewport の寸法のボックス                   |
+|          |            |                        | `::before`               | `p.new-item::before { content: "New!!"; color: red; }`                | `<img>` や `<br>` のような置換要素には利用不可                                           |
+|          |            |                        | `::cue`                  | ※15                                                                   | WebVTT キュー                                                                            |
+|          |            |                        | `::cue-region`           | ※5 ※15                                                                | WebVTT キュー                                                                            |
+|          |            |                        | `::file-selector-button` | `input::file-selector-button { color: red; }`                         | ファイル選択ボタン                                                                       |
+|          |            |                        | `::first-letter`         | `p::first-letter { font-size: 2rem; font-weight: bold; color: red; }` | ブロックレベル要素の最初の文字                                                           |
+|          |            |                        | `::first-line`           | `p::first-line { text-decoration: underline; }`                       | ブロックレベル要素の最初の行                                                             |
+|          |            |                        | `::grammar-error`        | `p::grammar-error { text-decoration: underline; }`                    | ユーザーエージェントが文法的に正しくないとフラグを立てたテキストセグメント               |
+|          |            |                        | `::marker`               | `li::marker { content: '☆'; }`                                        | リスト項目のマーカーボックス                                                             |
+|          |            |                        | `::part()`               | ※16                                                                   | Shadow DOM内部の要素                                                                     |
+|          |            |                        | `::placeholder`          | `input::placeholder { color: red; }`                                  | `<input>` や `<textarea>` のプレースホルダー                                             |
+|          |            |                        | `::selection`            |                                                                       |                                                                                          |
+|          |            |                        | `::slotted()`            |                                                                       |                                                                                          |
+|          |            |                        | `::spelling-error`       |                                                                       |                                                                                          |
+|          |            |                        | `::target-text`          |                                                                       |                                                                                          |
+|          |            |                        |                          |                                                                       |                                                                                          |
 
 <details>
   <summary>※3</summary>
@@ -568,7 +568,95 @@
 </details><br><br>
 
 <details>
-  <summary>※14</summary>
+  <summary>※15</summary>
+
+```html
+<style>
+    ::cue {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    video::cue(b) {
+        color: azure;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+</style>
+
+<video controls autoplay src="110879.mp4">
+    <track default src="webvtt.vtt">
+</video>
+```
+
+```
+WEBVTT
+
+00:01.000 --> 00:03.000
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+00:04.000 --> 00:06.000
+Cras congue, <b>lacus vel aliquet interdum</b>, augue tellus faucibus lorem, ac posuere purus lacus in erat.
+Aliquam vitae nulla nec elit convallis ultrices. Aenean eget placerat risus.
+
+NOTE
+Sed dignissim, erat eget condimentum dapibus,
+nisi nisl sollicitudin ex,
+auctor tempor velit eros eget erat.
+
+00:07.000 --> 00:09.000
+Vestibulum dignissim vehicula est sed vehicula.
+
+```
+
+</details><br><br>
+
+<details>
+  <summary>※16</summary>
+
+```html
+<style>
+    temp-elem::part(divpart):hover {
+        background-color: #9c9cff;
+        border-bottom: #0c0dcc solid 2px;
+    }
+</style>
+
+<template id="temp-elem">
+    <style>
+        :host {
+            display: flex;
+        }
+
+        div {
+            margin: 5px;
+        }
+    </style>
+    <div part="divpart active">Part 1</div>
+    <div part="divpart">Part 2</div>
+    <div part="divpart">Part 3</div>
+</template>
+
+<temp-elem></temp-elem>
+
+<script>
+    let template = document.querySelector("#temp-elem");
+    globalThis.customElements.define(
+        template.id,
+        class extends HTMLElement {
+            constructor() {
+                super()
+                    .attachShadow({ mode: "open" })
+                    .append(template.content);
+            }
+        }
+    );
+</script>
+```
+
+</details><br><br>
+
+<details>
+  <summary>※17</summary>
 
 ```html
 
@@ -577,7 +665,16 @@
 </details><br><br>
 
 <details>
-  <summary>※15</summary>
+  <summary>※18</summary>
+
+```html
+
+```
+
+</details><br><br>
+
+<details>
+  <summary>※19</summary>
 
 ```html
 
