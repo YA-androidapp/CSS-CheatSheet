@@ -1,0 +1,39 @@
+<style>
+    ::backdrop {
+        background-color: darkblue;
+    }
+</style>
+
+<dialog id="dialog">
+    <form method="dialog">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Maecenas in purus at massa cursus aliquet.
+            Donec sodales ipsum ac odio elementum, ut fermentum velit molestie.
+        </p>
+        <menu>
+            <button>OK</button>
+        </menu>
+    </form>
+</dialog>
+
+<menu>
+    <button id="open">Open</button>
+</menu>
+
+<script>
+    var open = document.getElementById('open');
+    var dialog = document.getElementById('dialog');
+
+    open.addEventListener('click', function onOpen() {
+        if (typeof dialog.showModal === "function") {
+            dialog.showModal();
+        } else {
+            console.error("The <dialog> API is not supported by this browser");
+        }
+    });
+
+    dialog.addEventListener('close', function onClose() {
+        console.log('closed', (new Date()).toString());
+    });
+</script>
