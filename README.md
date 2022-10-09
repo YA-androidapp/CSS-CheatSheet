@@ -212,7 +212,7 @@
 |          |            |                        | `::selection`            | `p::selection { color: darkgreen; background-color: palegreen; }`     | ユーザーがハイライトした部分                                                             |
 |          |            |                        | `::slotted()`            | ※17                                                                   | HTML テンプレート内のスロットに配置された要素                                            |
 |          |            |                        | `::spelling-error`       | `::spelling-error { text-decoration: wavy red; }`                     | スペルが間違っているテキストセグメント                                                   |
-|          |            |                        | `::target-text`          | `::target-text { color: black; background-color: red; }`              | scroll-to-text-fragmentがサポートされている場合のスクロール先の要素                      |
+|          |            |                        | `::target-text`          | `::target-text { color: black; background-color: red; }` ※18          | scroll-to-text-fragmentがサポートされている場合のスクロール先の要素                      |
 |          |            |                        |                          |                                                                       |                                                                                          |
 
 <details>
@@ -733,18 +733,7 @@ Vestibulum dignissim vehicula est sed vehicula.
 <details>
   <summary>※18</summary>
 
-```html
-
-```
-
-</details><br><br>
-
-<details>
-  <summary>※19</summary>
-
-```html
-
-```
+[scroll-to-text-fragment](./html/target-text.html#:~:text=Ut%20posuere%20aliquam%20dolor%20nec%20vehicula.)
 
 </details><br><br>
 
