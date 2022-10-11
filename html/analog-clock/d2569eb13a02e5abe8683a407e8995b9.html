@@ -1,0 +1,73 @@
+<style>
+    #clock {
+        background-color: SlateGray;
+        margin: 40px auto;
+        max-width: 600px;
+        position: relative;
+    }
+
+    #second {
+        animation: rotation-s2 60s linear infinite;
+        background-color: FloralWhite;
+        border-radius: 2px;
+        height: 4px;
+        position: absolute;
+        right: calc(50% - 2px);
+        top: calc(50% - 2px);
+        transform-origin: calc(100% - 2px) center;
+        width: 50%;
+    }
+
+    #minute {
+        animation: rotation-m2 3600s linear infinite;
+        background-color: FloralWhite;
+        border-radius: 10px;
+        height: 20px;
+        position: absolute;
+        right: calc(50% - 10px);
+        top: calc(50% - 10px);
+        transform-origin: calc(100% - 10px) center;
+        width: 45%;
+    }
+
+    #hour {
+        animation: rotation-h2 86400s linear infinite;
+        background-color: FloralWhite;
+        border-radius: 14px;
+        height: 28px;
+        position: absolute;
+        right: calc(50% - 14px);
+        top: calc(50% - 14px);
+        transform-origin: calc(100% - 14px) center;
+        width: 35%;
+    }
+</style>
+
+<script>
+    var time = new Date();
+    var second = time.getSeconds();
+    var minute = time.getMinutes();
+    var hour = time.getHours();
+
+    var secondDeg = (second * 360 / 60) + 90;
+    var minuteDeg = (minute * 360 / 60) + ((second * 360 / 60) / 60) + 90;
+    var hourDeg = (hour * 360 / 12) + ((minute * 360 / 60) / 12) + ((second * 360 / 60) / 720) + 90;
+
+    var animation = document.createElement('style');
+    animation.innerHTML = '@keyframes rotation-s2 {0% {transform: rotate(' + secondDeg + 'deg)}100% {transform: rotate(' + (secondDeg + 360) + 'deg)}}@keyframes rotation-m2 {0% {transform: rotate(' + minuteDeg + 'deg)}100% {transform: rotate(' + (minuteDeg + 360) + 'deg)}}@keyframes rotation-h2 {0% {transform: rotate(' + hourDeg + 'deg)}100% {transform: rotate(' + (hourDeg + 360) + 'deg)}}';
+    document.head.appendChild(animation);
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let clock = document.createElement('div');
+        clock.id = 'clock';
+        document.body.appendChild(clock);
+
+        ['hour', 'minute', 'second'].forEach(hand => {
+            let elem = document.createElement('div');
+            elem.id = hand;
+            clock.append(elem);
+        });
+
+        clock.style.height = clock.scrollWidth + 'px';
+    });
+</script>
