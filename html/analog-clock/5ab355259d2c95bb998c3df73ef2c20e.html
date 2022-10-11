@@ -1,0 +1,116 @@
+<style>
+    .wrapper {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+        width: 100%;
+    }
+
+    .clock {
+        background-color: rgb(0, 79, 97);
+        border-radius: 50%;
+        border: 3px solid FloralWhite;
+        height: 400px;
+        position: relative;
+        width: 400px;
+    }
+
+    .clock::after {
+        background: FloralWhite;
+        border-radius: 50%;
+        content: "";
+        height: 16px;
+        left: calc(50% - 8px);
+        position: absolute;
+        top: calc(50% - 8px);
+        width: 16px;
+    }
+
+    .line {
+        position: absolute;
+        transform-origin: bottom;
+    }
+
+    #hour {
+        background: FloralWhite;
+        height: 140px;
+        left: calc(50% - 4px);
+        top: calc(50% - 140px);
+        width: 8px;
+    }
+
+    #min {
+        background: FloralWhite;
+        height: 180px;
+        left: calc(50% - 2px);
+        top: calc(50% - 180px);
+        width: 4px;
+    }
+
+    #sec {
+        background: #D4BB92;
+        height: 180px;
+        left: calc(50% - 0.5px);
+        top: calc(50% - 180px);
+        width: 1px;
+    }
+
+    .scale {
+        height: 100%;
+        position: relative;
+        width: 100%;
+    }
+
+    .scale>div {
+        height: 50%;
+        left: calc(50% - 2px);
+        position: absolute;
+        top: 0;
+        transform-origin: bottom;
+        width: 4px;
+    }
+
+    .scale>div::after {
+        background-color: FloralWhite;
+        content: "";
+        height: 12px;
+        position: absolute;
+        top: 0;
+        width: 4px;
+    }
+</style>
+
+<div class="wrapper">
+    <div class="clock">
+        <div class="scale"></div>
+        <div id="hour" class="line"></div>
+        <div id="min" class="line"></div>
+        <div id="sec" class="line"></div>
+    </div>
+</div>
+
+<script>
+    window.onload = () => {
+        Array.from(Array(12), (v, k) => k + 1).forEach(i => {
+            let scaleElem = document.querySelector('.scale');
+            let addElem = document.createElement('div');
+            scaleElem.appendChild(addElem);
+            document.querySelector('.scale div:nth-child(' + i + ')').style.transform = `rotate(${i * 30}deg)`;
+        });
+
+        setInterval(function () {
+            var now = new Date();
+            var hour = now.getHours() * (360 / 12) + now.getMinutes() * (360 / 12 / 60);
+            var min = now.getMinutes() * (360 / 60);
+            var sec = now.getSeconds() * (360 / 60);
+            // document.getElementById('hour').style.transform = `rotate( ${hour} deg)`;
+            // document.getElementById('min').style.transform = `rotate( ${min} deg)`;
+            // document.getElementById('sec').style.transform = `rotate( ${sec} deg)`;
+            document.querySelector("#hour").style.transform = `rotate(${hour}deg)`;
+            document.querySelector("#min").style.transform = `rotate(${min}deg)`;
+            document.querySelector("#sec").style.transform = `rotate(${sec}deg)`;
+        }, 50);
+    }
+</script>
